@@ -1,0 +1,73 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+        @font-face {
+            font-family: Baby Darling;
+            src: url(../fonts/Baby-Darling.ttf)
+        }
+        @font-face {
+            font-family: a Among You;
+            src: url(../fonts/aAmongYou.ttf)
+        }
+        body{
+            background-color: #303A40;
+        }
+        .form_lg{
+            background-color: #EBEBEB;
+            text-align:center;
+            max-width: 350px;
+            height: 60%;
+            position: absolute;
+            left: 50%;
+            top:50%;
+            border-radius: 15px;
+            transform: translate(-50%, -50%);
+        }
+        .form_lg h1{
+            text-align: center;
+            color: #000000;
+            margin-top: 0;
+            font-family:'Baby Darling','Courier New', Courier, monospace;
+        }
+        .form_lg input[type=text],form input[type=password]{
+            width: 90%;
+            height: 6vh;
+            margin: 10px;
+            padding: 10px;
+            background:#CCC3C3;
+            border:0px;
+            border-radius:10px;
+            color:#000000;
+        }
+        .form_lg .image_ufam{
+            width: 100px;
+            height:100px;
+        }
+        .form_lg input[type=submit]{
+            height:6vh;
+            width: 50%;
+            background: #009688;
+            border: 0;
+            border-radius: 10px;
+            font-family:'a Among You','Courier New', Courier, monospace;
+            cursor: pointer;
+        }
+        .form_lg input[type=submit]:hover{
+            background-color: #647573;
+            animation: 1s;
+            color:#FFFFFF;
+        }
+        .form_lg input[type=password]:focus{
+            outline:0;
+        }
+        .form_lg input[type=text]:focus{
+            outline:0;
+        }
+        .form_lg div {
+            margin:10px;
+        }
+        .form_lg div input[type=checkbox], form div label{
+            cursor: pointer;
+        }
