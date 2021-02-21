@@ -1,9 +1,16 @@
 <?php
+require_once "Class/Conect.php";
+require_once "Class/SelecAccess.php";
 session_start();
-if(empty($_SESSION['sessionuser'])){
-    header("Location:login_screen.php");
-    die;
-}
 
+$con = new Conect;
+$vs = new SelecAccess;
+
+$vss = $vs->VerifySession($con,$_SESSION['sessionuser']);
+if($vss['STS'] != true)
+{
+    header("Location:login_screen.php");
+   die;
+}
 echo "oii";
 ?>

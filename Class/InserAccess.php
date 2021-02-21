@@ -5,16 +5,19 @@ class InserAccess extends AccessT
 {
     function InsertSe($con,$ipuser,$iduser,$userlevel,$date,$sessionnumber)
     {
-        $sessionnumber = substr($sessionnumber, -30);
-
-        $fun_inset = $con->bsConect()->prepare("INSERT INTO access 
+        $fun_inset = $con->bsConect()->prepare("INSERT INTO ".$this->getTdname()." 
         (".$this->getId().", ".$this->getIpus().", ".$this->getLaccess().", ".$this->getDateac().", ".$this->getForeignkey().") VALUES 
         ('$sessionnumber','$ipuser','$userlevel','$date','$iduser')");
-        $fun_inset->execute();
-
-        $re = array(
-            "Session" => $sessionnumber
-        );
-        return $re;
+        if($fun_inset->execute()){
+            $re = array(
+                "Session" => $sessionnumber
+            );
+            
+        }else{
+            $re = array(
+                "Session" => 0
+            );
+        }
+        return $re;        
     }
 }

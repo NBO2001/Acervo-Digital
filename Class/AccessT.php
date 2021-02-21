@@ -13,13 +13,13 @@ class AccessT
 
     function AccessT()
     {
-        $this->setTdname("access");
-        $this->setId("sessionnumber");
-        $this->setIpus("ipaccess");
-        $this->setLaccess("levleaccess");
+        $this->setTdname("gaccess");
+        $this->setId("sessionid");
+        $this->setIpus("ipUser");
+        $this->setLaccess("levelacc");
         $this->setDateac("dateaccess");
-        $this->setSituation("sessionstatus");
-        $this->setForeignkey("iduser");
+        $this->setSituation("statusse");
+        $this->setForeignkey("users_id");
     }
     function setTdname($tdname)
     {

@@ -14,8 +14,7 @@ if ($_POST['button_submit']){
 
     //Check in the database
     $con = new Conect;
-    $rs = new SelecUsers;
-    $con->bsConect();
+    $rs = new SelecUsers;    
     $rc = $rs->ConsultAccess($con,$username,$passwd);
 
     //Check if the user is active
@@ -29,20 +28,31 @@ if ($_POST['button_submit']){
         //Check active sessions
         $acc = new SelecAccess;
         $acr = $acc->VerifyAccess($con, $iduser);
-        
-        if($acr['Position'] != 0){
+       
+        if($acr['Position'] != 0 or $acr['Position'] != '0'){
             //End session
-            $up = new UpAccess;
-            $up->ChangeStatus($con, $acr['Position']);  
+            $up = new UpAccess;            
+            $retorno = $up->ChangeStatus($con, $acr['Position']); 
+            if($retorno['Sts'] == 0)
+            {
+                header("Location:login_screen.php");
+                die;
+            }                    
         }
-
         //insert new session
         $is = new InserAccess;        
         $iss = $is->InsertSe($con, $ipuser, $iduser, $userlevel, $date, $sessionnumber);
 
         //salve session
-        $_SESSION['sessionuser'] = $iss['Session'];
-        header("Location:index.php");
+        if($iss['Session'] != 0)
+        {
+            $_SESSION['sessionuser'] = $iss['Session'];
+           header("Location:index.php");
+        }else{
+            header("Location:login_screen.php");
+            die;
+        }
+        
     }else{
         //if status or password is wrong
         //Register in the database; computer ip and number of retries
