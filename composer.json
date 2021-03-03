@@ -1,0 +1,25 @@
+{
+    "name": "natan/sistema_con",
+    "description": "Projeto para disponipilizar pastas digitais",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "NBO2001",
+            "email": "natanbezerr63@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "twig/twig": "^3.3"
+    },
+    "autoload":{
+        "psr-4": {
+            "Tools\\":"app/src/",
+            "Control\\":"app/controller/",
+            "Core\\":"app/core/",
+            "Conf\\":"app/config/",
+            "Model\\":"app/model"
+        }
+    }
+
+}

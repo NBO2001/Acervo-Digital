@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<!-- Desenvolvedor : N.B.O -> 02.02.2021 -->
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel='stylesheet' type='text/css' href='CSS/style.css'>
-</head>
-<body>
-    <main class="container-login">
+{% extends "themeBase.php" %}
+
+{% block title %}Login{% endblock %}
+
+{% block bory %}
+<main class="container-login">
+
         <div class="lg-form">
             <img class='image_ufam' src='images/logo_ufam.jpg'/>
             <h1>Welcome!!!</h1>
         </div>
-        <form class='form_lg' action='login_process.php' method='post' autocomplete="off">                                
+
+        <form class='form_lg' action='homescreen' method='post' autocomplete="off">                                
                 <div class="input-field">
                     <input type='text' name='user_name' placeholder='your user name ...'/>
                     <div class="lined"></div>
@@ -26,10 +24,11 @@
                     <label for='chk_see_pass'>Show password</label>
                 </div>
                 <input type='submit' name='button_submit' value='Send'/>
-        </form>   
-        
-    </main>        
-</body>
+        </form>
+</main> 
+{% endblock %}
+
+{% block js %}
 <script>
     function show_password(){
         var field_type = document.getElementById('user_password');
@@ -40,5 +39,4 @@
         }
     }
 </script>
-
-</html>
+{% endblock %}

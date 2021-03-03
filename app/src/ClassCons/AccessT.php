@@ -1,4 +1,7 @@
 <?php
+
+namespace Tools\ClassCons;
+
 class AccessT
 {
     private $tdname;
@@ -11,7 +14,7 @@ class AccessT
 
     //Special methods
 
-    function AccessT()
+    function __construct()
     {
         $this->setTdname("gaccess");
         $this->setId("sessionid");

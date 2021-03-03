@@ -1,10 +1,15 @@
 <?php
-require_once "Class/UsersT.php";
+
+namespace Tools\ClassCons;
+use Tools\ClassCons\Conect;
 
 class InserAccess extends AccessT
 {
-    function InsertSe($con,$ipuser,$iduser,$userlevel,$date,$sessionnumber)
+
+    function InsertSe($ipuser,$iduser,$userlevel,$date,$sessionnumber)
     {
+        $con = new Conect;
+    
         $fun_inset = $con->bsConect()->prepare("INSERT INTO ".$this->getTdname()." 
         (".$this->getId().", ".$this->getIpus().", ".$this->getLaccess().", ".$this->getDateac().", ".$this->getForeignkey().") VALUES 
         ('$sessionnumber','$ipuser','$userlevel','$date','$iduser')");

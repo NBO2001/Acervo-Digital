@@ -1,5 +1,10 @@
 <?php
-require_once "Interface/ConectBase.php";
+
+namespace Tools\ClassCons;
+
+use Tools\Interfaces\ConectBase;
+use PDO;
+use PDOException;
 
 class Conect implements ConectBase{
     private $servername;
@@ -9,7 +14,7 @@ class Conect implements ConectBase{
 
     //Special methods
 
-    function Conect()
+    function __construct()
     {
         $this->setServername("localhost");
         $this->setBase("syscon");
@@ -53,7 +58,7 @@ class Conect implements ConectBase{
             $con = new PDO("mysql:host=".$this->getServername().";dbname=".$this->getBase()."", $this->getUsername(), $this->getPassword());
             return $con;
         }catch(PDOException $e){
-            die("Erro Contacte o adm");
+            die("Erro Contacte o adm". $e);
         }
     }
 

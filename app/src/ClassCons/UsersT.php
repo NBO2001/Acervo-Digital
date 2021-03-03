@@ -1,5 +1,7 @@
 <?php
 
+namespace Tools\ClassCons;
+
 class UsersT{
     //Table name
     
@@ -15,7 +17,7 @@ class UsersT{
 
     //Special methods
 
-    function UsersT()
+    function __construct()
     {
         $this->setTablename("users");
         $this->setIdentify("id");

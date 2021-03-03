@@ -6,11 +6,11 @@
 }
         @font-face {
             font-family: Baby Darling;
-            src: url(../fonts/Baby-Darling.ttf)
+            src: url(../vendor/fonts/Baby-Darling.ttf)
         }
         @font-face {
             font-family: a Among You;
-            src: url(../fonts/aAmongYou.ttf)
+            src: url(../vendor/fonts/aAmongYou.ttf)
         }
         body{
             background: linear-gradient(45deg, #303A40,#395363);
