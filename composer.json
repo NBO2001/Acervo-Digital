@@ -18,7 +18,8 @@
             "Control\\":"app/controller/",
             "Core\\":"app/core/",
             "Conf\\":"app/config/",
-            "Model\\":"app/model"
+            "Model\\":"app/model/",
+            "Entities\\":"app/src/entities/"
         }
     }
 

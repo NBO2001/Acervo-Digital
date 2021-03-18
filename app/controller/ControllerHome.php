@@ -5,6 +5,7 @@ namespace Control;
 session_start();
 
 use Core\Controller;
+use Model\ValidateSession;
 
 class ControllerHome extends Controller
 {
@@ -15,9 +16,19 @@ class ControllerHome extends Controller
     }
     function screenIni()
     {
-        if(isset($_SESSION['sessionuser'] ))
+        if(isset($_SESSION['sessionuser']))
         {
-            echo $this->load('sreenInicial');
+            $model = new ValidateSession;
+            if($model->valSession($_SESSION['sessionuser']))
+            {
+                echo $this->load('sreenInicial');
+            }
+            else
+            {
+                unset($_SESSION['sessionuser']);
+                header("Location:login");
+            }
+            
         }
         else
         {

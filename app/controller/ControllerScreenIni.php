@@ -1,5 +1,5 @@
 <?php
-//ControllerScreenIni
+
 namespace Control;
 
 session_start();
@@ -14,18 +14,30 @@ class ControllerScreenIni extends Controller
 {
     function sreenLogin()
     {
+        unset($_SESSION['sessionuser']);
         if(Functions::vbSumbit('button_submit'))
         {
+            /**
+             * Encrypt the password
+             */
             $senha      = Functions::dataCrypt('password_user');
 
             $user_name  = Functions::dataCrypt('user_name');
             
+            /**
+             * Calls the validation model
+             */
             $vf         = new ValidaUsers;
-
+            
             $resu = $vf->verifyUse($user_name,$senha);
-
-            $_SESSION['sessionuser'] = $resu['Session'];
-
+            
+            /**
+             * Add user session
+             */
+            if(isset($resu['Session'])):
+                $_SESSION['sessionuser'] = $resu['Session'];
+            endif;
+            
             header("Location:home");
 
         }
@@ -33,10 +45,5 @@ class ControllerScreenIni extends Controller
         {
             echo "Não TEm";
         }
-
-        // foreach($_REQUEST as $linha)
-        // {
-        //     echo $linha;
-        // }
     }
 }

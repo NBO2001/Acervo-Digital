@@ -2,30 +2,23 @@
 
 namespace Model;
 
-use Tools\ClassCons\SelecUsers;
-use Tools\ClassCons\SelecAccess;
-use Tools\ClassCons\UpAccess;
-use Tools\ClassCons\InserAccess;
-use  PDO;
+use Entities\DataBaseController;
 
 class ValidaUsers
 {
     function verifyUse(string $user,string $senha)
     {   
         //Querry to see if it is in the database
-        $consult = new SelecUsers;
+        $dbController = new DataBaseController;
 
-        $resultConsult = $consult->ConsultAccess($user,$senha);
-
-        if($resultConsult['Status'])
+        $resultConsult = $dbController->execute('Users@Select@consultUsers',[$user,$senha]);
+        
+        if(isset($resultConsult))
         {
-            $section = new SelecAccess;
 
-            $section = $section->VerifyAccess($resultConsult['Identificador']);
+            $vss = $dbController->execute("Access@Select@verifyAccess", [$resultConsult['Identificador']]);
 
-            $chanceSession = $this->chanceAccess($section['Position']);
-
-            if($chanceSession == -1 or $chanceSession == 1)
+            if($dbController->execute("Access@Update@changeStatus", [$vss['Position']]))
             {
                 $iduser = $resultConsult['Identificador'];
 
@@ -36,16 +29,15 @@ class ValidaUsers
                 $date = date('Y-m-d H:i');  
                 
                 $sessionnumber = sha1(md5($date.time().$iduser));
-
-                $is = new InserAccess;  
-
-                $iss = $is->InsertSe($ipuser, $iduser, $userlevel, $date, $sessionnumber);
                 
+                $iss = $dbController->execute("Access@Insert@insertSe", [
+                    $sessionnumber, $ipuser,$date,$userlevel,$iduser]);
+
                 return $iss;
             }
             else
             {
-                echo "Error";
+                return false;
             }
 
             
@@ -54,26 +46,5 @@ class ValidaUsers
         {
             return "Usuário Inátivo";
         }
-    }
-    private function chanceAccess($id)
-    {
-        if($id)
-            {
-                $up = new UpAccess;
-
-                $return = $up->ChangeStatus($id);
-                
-                if($return['Sts'])
-                {
-                    return $return['Sts'];
-                }
-                else
-                {
-                    return $return['Sts'];
-                }
-
-            }else{
-              return -1;
-            }
     }
 }
